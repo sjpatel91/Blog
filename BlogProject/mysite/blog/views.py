@@ -70,10 +70,10 @@ def add_comment_to_post(request,pk):
             comment.post = post
             comment.save()
             return redirect('post_detail', pk=post.pk)
-        else:
-            form = CommentForm()
-        return render(request,'/blog/comment_form.html',{'form':form})
-    
+    else:
+        form = CommentForm()
+    return render(request,'blog/comment_form.html',{'form':form})
+
 @login_required
 def comment_approve(request,pk):
     comment = get_object_or_404(Comment,pk=pk) 
