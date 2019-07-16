@@ -3,6 +3,8 @@ from .models import Post,Comment
 from django.utils import timezone
 from django.urls import reverse_lazy
 from .forms import PostForm,CommentForm
+from .serializers import PostSerializer
+from rest_framework import generics
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (TemplateView,ListView,DeleteView,UpdateView,CreateView, DetailView)
@@ -50,6 +52,10 @@ class DraftListView(LoginRequiredMixin,ListView):
     model = Post
     def get_queryset(self):
         return Post.objects.filter(published_date__isnull=True).order_by('create_date')
+
+class ListPostView(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serialzer_class = PostSerializer
     
 ################################################################################
 #############################

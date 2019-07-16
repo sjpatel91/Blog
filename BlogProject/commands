@@ -1,0 +1,21 @@
+# create Pydev project, right click on proj and set as Django proj
+# cd into project dir, write "virtualenv BlogEnv"
+#  .\BlogEnv\Scripts\activate
+# django-admin startproject mysite
+# cd mysite
+# django-admin startapp blog
+# python manage.py migrate
+# python manage.py makemigrations
+# python manae.py runserver
+# make models
+# make forms
+# views
+# add in urlpatterns
+# make templates
+
+
+# API
+Add serializer class
+Add view for api using seriallizer
+add url /api
+

@@ -5,6 +5,11 @@ Created on Jul 6, 2019
 '''
 from django.conf.urls import url
 from . import views 
+from .views import ListPostView
+from django.urls import path
+from .models import Post,Comment
+from .serializers import PostSerializer
+from rest_framework import generics
 
 urlpatterns = [
         url(r'post/(?P<pk>\d+)$',views.PostDetailView.as_view(), name='post_detail'),
@@ -18,5 +23,6 @@ urlpatterns = [
         url(r'^comment/(?P<pk>\d+)/approve/$',views.comment_approve, name='comment_approve'),
         url(r'^comment/(?P<pk>\d+)/remove/$',views.comment_remove, name='comment_remove'),
         url(r'^post/(?P<pk>\d+)/publish/$',views.post_publish, name='post_publish'),
+        path('posts/',ListPostView.as_view(queryset=Post.objects.all(), serializer_class=PostSerializer), name='post_api_view'),
                
     ]

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 #from django.conf.urls import urls,include
-from django.urls import path,include
+from django.urls import path,include, re_path
 from django.contrib.auth import views as auth_views
 
 
@@ -27,4 +27,5 @@ urlpatterns = [
     path('accounts/login', auth_views.LoginView.as_view(), name='login'),
     #url(r'accounts/logout/$',views.logout,name='logout',kwargs={'next_page':'/'})
     path('accounts/logout',auth_views.LogoutView.as_view(), name='logout',kwargs={'next_page':'/'}),
+    re_path('api/(?P<version>(v1|v2))/', include('blog.urls')),
 ]
